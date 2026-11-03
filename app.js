@@ -34,6 +34,27 @@ function onVisible(el, fn, once = true) {
   if (logo.complete && logo.naturalWidth === 0 && png) setTimeout(() => { if (logo.naturalWidth === 0) logo.hidden = true; }, 400);
 })();
 
+/* ---------- selector de sistema para la descarga ---------- */
+(() => {
+  const btn = $('#dlBtn'), label = $('#dlLabel'), hint = $('#osHint'), radios = $$('#os input[name="os"]');
+  const NAMES = { mac: 'Mac', win: 'Windows' };
+  const ua = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+  const guess = /mac|iphone|ipad/i.test(ua) ? 'mac' : /win/i.test(ua) ? 'win' : null;
+  function pick(os, auto) {
+    radios.forEach(r => { r.checked = r.value === os; });
+    label.textContent = 'Descargar para ' + NAMES[os];
+    btn.dataset.os = os;
+    hint.textContent = auto ? `Detectamos que usas ${NAMES[os]}. Puedes cambiarlo arriba.` : '';
+  }
+  radios.forEach(r => r.addEventListener('change', () => pick(r.value, false)));
+  pick(guess || 'win', !!guess);
+  btn.addEventListener('click', e => {
+    const url = btn.dataset[btn.dataset.os];
+    if (!url || url === '#') { e.preventDefault(); toast('Descarga para ' + NAMES[btn.dataset.os] + ': agrega tu enlace en index.html'); return; }
+    btn.href = url;
+  });
+})();
+
 /* ---------- resaltado de sintaxis mínimo ---------- */
 const RE = /(\{%.*?%\}|\{\{.*?\}\})|(<\/?[A-Za-z][\w-]*|\/?>)|(\/\/.*)|("[^"]*"|'[^']*'|`[^`]*`)|\b(const|let|var|function|return|for|of|if|else|import|from|export|def|class|override|fun|val|new|in|true|false|null|None|self|await|async|package)\b|\b(\d+(?:\.\d+)?)\b|([A-Za-z_]\w*)(?=\()/g;
 const RE_PY = new RegExp(RE.source.replace('(\\/\\/.*)', '(#.*)'), 'g');

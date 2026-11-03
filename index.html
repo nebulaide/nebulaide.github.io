@@ -7,6 +7,8 @@
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Nébula es un IDE que arma la estructura de tu proyecto: plantillas, selector de íconos, terminal integrada, vista responsiva y revisión de errores en una sola ventana.">
 <title>Nébula · El IDE que arma tu proyecto</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="logo.png">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,8 +17,7 @@
 
 <header class="top" id="top">
   <a class="brand" href="#inicio" aria-label="Nébula, inicio">
-    <!-- Coloca tu logo como logo.svg (o logo.png) junto a este archivo. Si no existe, se muestra solo el nombre. -->
-    <img id="logo" src="logo.svg" alt="" width="30" height="30">
+    <img id="logo" src="logo.png" alt="" width="32" height="32">
     <span class="wm">Nébula</span>
   </a>
   <nav class="links" aria-label="Principal">
@@ -255,8 +256,33 @@
 <section class="sec final" id="descargar">
   <div class="wrap">
     <h2>Descarga Nébula y arma tu próximo proyecto.</h2>
+    <fieldset class="os" id="os">
+      <legend>¿En qué computadora vas a usar Nébula?</legend>
+      <div class="os-opts">
+        <label class="os-opt">
+          <input type="radio" name="os" value="mac">
+          <span class="os-card">
+            <svg class="ic" aria-hidden="true"><use href="#i-laptop"/></svg>
+            <span class="os-txt"><b>Mac</b><small>macOS</small></span>
+            <svg class="ic os-ok" aria-hidden="true"><use href="#i-check"/></svg>
+          </span>
+        </label>
+        <label class="os-opt">
+          <input type="radio" name="os" value="win">
+          <span class="os-card">
+            <svg class="ic" aria-hidden="true"><use href="#i-ventanas"/></svg>
+            <span class="os-txt"><b>Windows</b><small>PC con Windows</small></span>
+            <svg class="ic os-ok" aria-hidden="true"><use href="#i-check"/></svg>
+          </span>
+        </label>
+      </div>
+    </fieldset>
+    <p class="os-hint" id="osHint" aria-live="polite"></p>
     <div class="cta">
-      <a class="btn lg" href="#">Descargar Nébula</a>
+      <!-- Pon aquí tus enlaces reales: data-mac y data-win -->
+      <a class="btn lg" id="dlBtn" href="#descargar" data-mac="/src/assets/descargas/Nebula.dmg" data-win="/src/assets/descargas/Nebula.exe">
+        <svg class="ic" aria-hidden="true"><use href="#i-descargar"/></svg><span id="dlLabel">Descargar Nébula</span>
+      </a>
       <a class="btn ghost lg" href="#inicio">Volver a la demo</a>
     </div>
     <p class="note">Descarga gratuita.</p>
@@ -324,7 +350,9 @@
   <symbol id="i-tableta" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></symbol>
   <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></symbol>
   <symbol id="i-mas" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
-  <symbol id="i-cerrar" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="12" rx="1.5"/><path d="M2 20h20"/></symbol>
+  <symbol id="i-ventanas" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></symbol>
+  <symbol id="i-cerrar"viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
 </svg>
 
 <script src="app.js"></script>
